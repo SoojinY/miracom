@@ -1,0 +1,23 @@
+.icon-2xl{
+    stroke-width: 1.75;
+    flex-shrink: 0;
+    height: 2rem;
+    width: 2rem;
+}
+
+.icon-md {
+    height: 18px;
+    width: 18px;
+}
+
+.icon-md, .icon-sidebar {
+    stroke-width: 1.5;
+    flex-shrink: 0;
+}
+
+.icon-xl-heavy {
+    stroke-width: 2;
+    flex-shrink: 0;
+    height: 24px;
+    width: 24px;
+}

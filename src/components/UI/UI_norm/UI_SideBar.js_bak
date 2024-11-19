@@ -1,0 +1,175 @@
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
+
+import Sidebar_Tab from './UI_SideBar_Tab.js';
+import '../../STYLE/SideBar_scroll.css';
+import '../../STYLE/SideBar_ul.css';
+import Icon_side_bar from './../../../Icon/Icon_side_bar.png';
+
+const Sidebar = forwardRef((props, ref) => {
+    const [DATA_Tabs_, DATA_Tabs] = useState({});
+    // const [VAR_CUR_PAGE_, VAR_CUR_PAGE] = useState('코드어시스턴트');
+    // const CALLBACK_onclick_ = props._CALLBACK_onclick ? props._CALLBACK_onclick : null;
+    const CALLBACK_onclick_ = (insert_data) => {
+        if (props._CALLBACK_onclick) {
+            props._CALLBACK_onclick(insert_data);
+            // VAR_CUR_PAGE(insert_data.split('_')[0]);
+        }
+    }
+
+    useImperativeHandle(ref, () => ({
+        // VAR_CUR_PAGE,
+        func_save,
+        MANAGE_setting_tab: (insert_data) => {
+            DATA_Tabs(insert_data);
+        },
+        MANAGE_add_tab_e: (key, data) => {
+
+            const today = new Date();
+            const year = today.getFullYear(); // 현재 년도
+            const month = today.getMonth() + 1; // 현재 월 (0부터 시작하므로 +1)
+            DATA_Tabs(prevData => {
+
+                const newData = { ...prevData };
+
+                if (newData[year + '_' + month]) {
+                    if (newData[year + '_' + month]) {
+                        newData[year + '_' + month][key] = data
+                    }
+                    else {
+                        newData[year + '_' + month] = {}
+                        newData[year + '_' + month][key] = data
+                    }
+                }
+                else {
+                    newData[year + '_' + month] = {}
+                    newData[year + '_' + month][key] = data
+                }
+                return newData;
+            })
+        }
+        // MANAGE_delete_tab:(insert_key,insert_data)=>MANAGE_delete_tab(insert_key,insert_data)
+    }))
+
+    const [isOpen_, isOpen] = useState(false);
+    const sidebarRef = useRef();
+    //UI setting
+    let [UI_width_, UI_width] = useState(props._UI_width ? props._UI_width : 200);
+    let [VAR_position_x_, VAR_position_x] = useState(props._UI_width ? -props._UI_width : -200)
+
+    const white_text = {
+        color: '#ffffff'
+    };
+    
+    const CALL_BACK_toggle_=props._CALL_BACK_toggle;
+
+    const toggleSidebar = () => {
+        if (isOpen_) {
+            VAR_position_x(-UI_width_);
+        }
+        else {
+            VAR_position_x(0);
+        }
+        isOpen(!isOpen_);
+        if(CALL_BACK_toggle_)CALL_BACK_toggle_(isOpen_);
+    };
+
+
+    const func_save = () => {
+        localStorage.setItem('side_list', JSON.stringify(DATA_Tabs_));
+    }
+    return (
+        <div ref={sidebarRef} style={{
+            width: isOpen_ ? UI_width_ + 'px' : 0 + 'px', // 사이드바 너비
+            // width:'200px',
+            backgroundColor: '#000000',
+            transition: '0.3s ease',
+            height: '100%',
+        }}  >
+            <div className="shade-container"
+            style={{
+                
+   
+                        position: 'fixed',
+                        top: '0px',
+                        left: '0px',
+                        width: '40px',
+                        height: '35px',
+                        margin:'10px',
+                        color: '#ffffff',
+                        zIndex: '99',
+                    }}
+            
+            >
+                <img src={Icon_side_bar}
+                    style={{
+                        position: 'fixed',
+                        top: '0px',
+                        left: '0px',
+                        width: '40px',
+                        height: '35px',
+                        margin:'10px',
+                        color: '#ffffff',
+                        zIndex: '99',
+                        filter: 'invert(1)',
+                        transition: 'filter 0.3s', // 부드러운 전환 효과
+                    }}
+                    onClick={toggleSidebar}
+                    className="shade-content" // 클래스 추가
+                    alt="Sidebar Icon">
+
+
+                </img>
+            </div>
+            <div style={{
+                width: '0px',
+                height: '0px',
+                transform: `translatex(${VAR_position_x_}px)`,
+                transition: '0.3s ease',
+                overflow: 'visible'
+            }}>
+
+                {/* <button
+                    style={{
+                        position: 'absolute', top: 0, left: UI_width_ + 'px', width: '50px', height: '50px',
+                        color: '#ffffff'
+                        , mixBlendMode: 'difference',
+                        backgroundColor: '#000000',
+                        bordercolor: 'transparent', transition: '0.3s ease', zIndex: '99'
+                    }} onClick={toggleSidebar}>
+
+                    {isOpen_ ? '<<<' : '>>>'}
+                </button> */}
+            </div>
+            <div style={{height:'10vh', paddingTop: '10px', paddingBottom: '30px' ,backgroundColor:'#000000'}}>
+                    {/* <span style={white_text}>{VAR_CUR_PAGE_}</span> */}
+
+                </div>
+            <div style={{
+                // width: UI_width_+'px' ,
+                width: UI_width_ + 'px',
+                height: '90vh',
+                overflowY: 'scroll',
+                backgroundColor: 'transparent',
+                transform: `translatex(${VAR_position_x_}px)`,
+                transition: '0.3s ease'
+            }} >
+
+ 
+
+                <div style={{ backgroundColor: '#000000', overflow: 'hidden' ,zIndex: '10'}}>
+                    {/* {DATA_Tabs_.map(item => (
+                        <Sidebar_Tab dataset={item} _CALLBACK_onclick={CALLBACK_onclick_}></Sidebar_Tab>
+                    ))} */}
+                    {Object.entries(DATA_Tabs_).map(([key, value]) => (
+                        <Sidebar_Tab key={key} dataset={value} _CALLBACK_onclick={CALLBACK_onclick_}></Sidebar_Tab>
+                    ))}
+                </div>
+            </div>
+        </div >
+    );
+
+
+});
+
+
+export default Sidebar;

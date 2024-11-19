@@ -1,0 +1,14 @@
+/* .fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; }
+ */
+
+
+.fade-in.show {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; 
+}
+
+.fade-in.noshow {
+  opacity: 0;
+}

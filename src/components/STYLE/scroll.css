@@ -1,0 +1,36 @@
+
+::-webkit-scrollbar {
+    width: 8px; /* 수직 스크롤바의 너비 */
+    height: 8px; /* 수평 스크롤바의 높이 */
+}
+
+/* 스크롤바 배경 */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 배경 색상 */
+    border-radius: 10px; /* 모서리 둥글게 */
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤바 색상 */
+    border-radius: 10px; /* 모서리 둥글게 */
+}
+
+/* 스크롤바 호버 */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 호버 시 색상 */
+}
+
+/* 스크롤 컨테이너 스타일 */
+.scroll-container {
+    height: 200px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+/* 스크롤 내용 스타일 */
+.scroll-content {
+    height: 100%; /* 내용 높이 */
+    padding: 10px;
+}

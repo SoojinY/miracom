@@ -1,0 +1,40 @@
+@import url(page.css);
+
+.shade-container {
+    color: var(--text-secondary);
+    position: relative;
+    z-index: 1; 
+    padding: .375rem;
+    border-radius: .5rem;
+    display: inline-block;
+}
+
+.shade-content {
+    transition: filter 0.3s; /* 부드러운 전환 효과 */
+    z-index: 9; 
+}
+
+.shade-container:hover {
+    /* filter: brightness(1.2); 밝게 설정 */
+    /* color: var(--text-secondary); */
+    /* z-index: 9;  */
+    background: var(--gray-100);
+}
+
+/* .shade-container::before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gray-100); 
+    opacity: 0;
+    border-radius: 5px;
+    transition: opacity 0.3s;
+}
+
+.shade-container:hover::before {
+    opacity: 1; 
+} */

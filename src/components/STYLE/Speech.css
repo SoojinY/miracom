@@ -1,0 +1,45 @@
+ol {
+    font-weight: bold;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ol > li {
+    font-weight: inherit;
+    list-style-type: decimal;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 1px 0; 
+    margin: 1px 0; 
+    margin-left: 20px;
+    line-height: 1.5;
+    transition: none;
+}
+
+
+ol > li > ol {
+    list-style-type: circle;
+}
+
+ol > li > ol > li {
+    list-style-type: none;
+    padding-left: 1em;
+}
+
+ol > li > ol > li::before {
+    content: "– ";
+    margin-right: 0.5em;
+    display: inline-block;
+}
+
+p {
+    margin: inherit;
+    padding: inherit;
+    font-weight: normal;
+    background: transparent; 
+    border: none; 
+    box-shadow: none; 
+    list-style: none; 
+}

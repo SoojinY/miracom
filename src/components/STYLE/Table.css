@@ -1,0 +1,27 @@
+/* table {
+    background-color: #bbb;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #999;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.cell {
+    border: none;
+    padding: 10px;
+    color: #000;
+}
+
+tr:nth-child(odd) {
+    background-color: #aaa;
+}
+
+tr:nth-child(even) {
+    background-color: #ccc; 
+} */

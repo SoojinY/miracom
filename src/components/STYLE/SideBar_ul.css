@@ -1,0 +1,101 @@
+:root{
+    --sidebar-background-color: #F9F9F9;
+    --sidebar-active-color: #ececec;
+}
+
+.sidebar-background{
+    background-color: var(--sidebar-background-color) !important;
+}
+.sidebar-wrapper{
+    /* padding:0 .75rem; */
+    flex-direction: column;
+    transition: 0.3s ease;
+    height: 100%;
+    /* border-right: 1px solid ; */
+}
+
+.sidetab-wrapper{
+    height: 90%;
+    padding: 0;
+    margin: 0;
+    padding-right: .25rem;
+}
+div.side_tab{
+    margin-left: 5px;
+}
+
+ul.side_tab {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0;
+    margin-left: 10px;
+    text-align: left; 
+    z-index: 1;
+}
+
+li.side_tab {
+    list-style-type: none;
+    font-family: 'Arial', sans-serif; 
+    /* height: 30px; */
+    line-height: 1.25rem;
+    /* background-color: #eee; 기본 배경색 */
+    background-color: transparent;
+    color: black; /* 글자색 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s; /* 효과 전환 */
+    text-align: left; 
+    text-overflow: ellipsis;
+    z-index: 1;
+}
+
+div.hoverfade-container{
+    padding: .3rem
+}
+/* Hover 상태 */
+div.hoverfade-container:hover {
+    background-color: var(--sidebar-active-color); /* hover 시 배경을 하얗게 */
+    border-radius: .5rem;
+    /* color: black; hover 시 글자색 유지 */
+}
+/* li.side_tab:hover {
+    background-color: #fff; hover 시 배경을 하얗게
+    color: black; hover 시 글자색 유지
+} */
+
+/* 자식 요소가 있을 때 적용 */
+li.side_tab:has(*) {
+    margin-bottom: 10px; /* 하단 마진 추가 */
+    text-align: left; 
+    z-index: 1;
+}
+
+.side_tab:hover:not(:only-child) { 
+    text-align: left; 
+    z-index: 1;
+}
+
+
+/* 사이드바 팝업 메뉴 (이름 바꾸기, 삭제) */
+.menuList{
+    /* padding: .5rem 0;
+    border-radius: .375rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1); */
+}
+.menu {
+    display: flex;
+    border-radius: .375rem;
+    justify-content: flex-start; /*좌측정렬 */
+    align-items: center;
+    padding: .75rem;
+    margin: 0 .5rem 
+}
+.menuItem {
+    margin-right: .75rem;
+    position: relative;
+}
+.menu:hover{
+    background-color: #f3f3f3;
+}
+.red {
+    color: #f93a37
+}

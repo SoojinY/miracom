@@ -1,0 +1,17 @@
+/* .hoverfade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; 
+}
+
+.hoverfade-in:hover {
+  opacity: 1; 
+} */
+
+.hoverfade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; 
+}
+
+.hoverfade-container:hover .hoverfade-in {
+  opacity: 0.3; 
+}

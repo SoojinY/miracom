@@ -1,0 +1,186 @@
+
+const mongoose = require('mongoose');
+
+const default_url="mongodb://localhost:4307"; 
+
+
+
+app.get('/DB/division/get', async (req, res) => {
+    const client = new MongoClient(default_url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+
+    try {
+        await client.connect();
+        const db = client.db('data_user');
+        const collection = db.collection('division');
+        
+        const divisions = await collection.distinct("name");
+
+        console.log(divisions);
+        return divisions;
+    } catch (error) {
+        console.error("데이터 가져오기 중 오류 발생:", error);
+        return [];
+    } finally {
+        await client.close();
+    }
+});
+
+pp.get('/DB/permission/get_list', async (req, res) => {
+
+    const { division } = req.query;  // 클라이언트에서 보낸 division 값만 받음
+
+    if (!division) {
+        return res.status(400).send('Division is required');
+    }
+
+    const client = new MongoClient(default_url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+
+    try {
+        await client.connect();
+        const db = client.db('data_user');
+        const collection = db.collection('permission');  
+
+        // division 값에 맞는 데이터를 가져오기
+        const result = await collection.find({ 부서: division }).toArray();
+
+        // 결과 그대로 반환
+        if (result.length > 0) {
+            res.status(200).json(result);  // 변환 없이 그대로 반환
+        } else {
+            res.status(404).json({ message: 'No data found for the provided division' });
+        }
+    } catch (error) {
+        console.error('MongoDB query error:', error);
+        res.status(500).send('Internal Server Error');
+    } finally {
+        await client.close();
+    }
+});
+
+
+
+
+app.post('/DB/division/new', async (req, res) => {
+    const { name, permission } = req.body;  // 클라이언트에서 보낸 데이터
+
+    // 필수값 확인
+    if (!name || permission === undefined) {
+        return res.status(400).json({ error: 'name과 permission이 모두 필요합니다.' });
+    }
+
+    // MongoDB 연결을 함수 내부에서 처리
+    const client = new MongoClient(default_url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+
+    try {
+        // 1. MongoDB에 연결
+        await client.connect();
+        const db = client.db('data_user');
+        const collection = db.collection('division');
+
+        // 2. 이미 해당 name이 존재하는지 확인
+        const existingDivision = await collection.findOne({ name });
+
+        if (existingDivision) {
+            // 이미 division이 존재하는 경우
+            return res.status(400).json({ message: '해당 부서는 이미 존재합니다.' });
+        }
+
+        // 3. division 데이터 삽입
+        const result = await collection.insertOne({ name, permission });
+
+        // 4. 성공 응답
+        res.status(200).json({ message: 'division 추가 완료', division: result.ops[0] });
+    } catch (error) {
+        // 에러 처리
+        console.error("데이터베이스 오류:", error);
+        res.status(500).json({ error: '서버 오류' });
+    } finally {
+        // DB 연결 종료
+        await client.close();
+    }
+});
+
+
+
+app.post('/DB/permission/new', async (req, res) => {
+  const { key, name, division, permission } = req.body;
+
+  // 필수값 확인
+  if (!key || !name || !division || !permission ) {
+    return res.status(400).json({ error: '모든 필드는 필수입니다.' });
+  }
+
+  // MongoDB 연결을 함수 내부에서 처리
+  const client = new MongoClient(default_url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  try {
+    // 1. MongoDB에 연결
+    await client.connect();
+    const db = client.db('data_user');
+    const permissionCollection = db.collection('permission');
+    const divisionCollection = db.collection('division');
+
+    // 2. Permission 데이터 중복 체크 후 덮어쓰기
+    const existingPermission = await permissionCollection.findOne({ key });
+
+    if (existingPermission) {
+      // 기존 permission이 존재하면 덮어쓰기
+      const result = await permissionCollection.updateOne(
+        { key },  // key 값으로 찾기
+        { $set: { name, division, permission } }  // 해당 데이터를 덮어쓰기
+      );
+      console.log(`권한이 덮어써졌습니다. key: ${key}`);
+    } else {
+      // 기존 permission이 없으면 새로 추가
+      const newPermission = new Permission({
+        key,
+        name,
+        division,
+        permission
+      });
+
+      // Permission 데이터를 저장
+      await newPermission.save();
+      console.log(`새로운 권한이 추가되었습니다. key: ${key}`);
+    }
+
+    // 3. Division 데이터 삽입
+    // 해당 division이 이미 존재하는지 확인
+    const existingDivision = await divisionCollection.findOne({ name: division });
+
+    if (!existingDivision) {
+      // 부서가 존재하지 않으면 새로 추가
+      await divisionCollection.insertOne({ name: division, permission: {} });
+      console.log(`새로운 부서 '${division}'이(가) 추가되었습니다.`);
+    } else {
+      console.log(`부서 '${division}'은 이미 존재합니다.`);
+    }
+
+    // 4. 성공 응답
+    res.status(201).json({
+      message: '새로운 권한과 부서가 추가되었습니다.',
+      key,
+      name,
+      division,
+      permission
+    });
+  } catch (err) {
+    console.error("서버 오류:", err);
+    return res.status(500).json({ error: '서버 오류' });
+  } finally {
+    // DB 연결 종료
+    await client.close();
+  }
+});

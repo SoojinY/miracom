@@ -1,0 +1,52 @@
+@import url(page.css);
+
+.combo-box-container {
+    padding: 0;
+    margin: 0;
+    /* height: 100%; */
+    position: relative; 
+}
+
+.combo-box {
+    display:flex;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    padding: .375rem; 
+    gap: .25rem;
+    border: none; 
+    font-size: 1em; 
+    outline: none;
+    /* transition: filter 0.3s; */
+    background-color: white;
+    z-index: 2; 
+    font-weight: 600;
+    align-items: center;
+    border-radius: .5rem;
+    
+}
+
+.combo-box option {
+    color: #fff; /* 옵션의 글자 색상: 검정색 */
+    background-color: #000; /* 옵션 배경색: 흰색 */
+    
+}
+
+.combo-box:hover {
+    background-color: var(--gray-100)
+}
+
+.combo-box:focus {
+    color: #fff; /* 포커스 시 글자 색상: 흰색 */
+}
+
+.combo-box-option{
+    border-radius: 1.5rem !important;
+    position: absolute;
+    background-color: white; /* 옵션 배경색: 흰색 */
+    padding: .25rem .625rem;
+    width: 30vw;
+    min-width: 125px;
+    opacity: 0; /* 기본 상태 */
+    animation: fadeIn 0.2s ease-in forwards;
+}

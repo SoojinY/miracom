@@ -1,0 +1,142 @@
+:root{
+  --chat-background-color: #F4F4F4;
+  --button-gray: #afafaf;
+
+  --gray-400: #b4b4b4;
+  --text-secondary: #5d5d5d;
+
+
+
+  --gray-50: #f9f9f9;
+  --gray-100: #ececec;
+  --gray-200: #e3e3e3;
+  --gray-300: #cdcdcd;
+  --gray-400: #b4b4b4;
+  --gray-500: #9b9b9b;
+  --gray-600: #676767;
+  --gray-700: #424242;
+  --gray-750: #2f2f2f;
+  --gray-800: #212121;
+  --gray-900: #171717;
+  --gray-950: #0d0d0d;
+  --red: #f93a37;
+  --red-500: #ef4444;
+  --red-700: #b91c1c;
+
+  --border-light: rgba(0, 0, 0, .1);
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+.align-center{
+  align-items: center;
+}
+
+html {
+    font-family: ui-sans-serif,-apple-system,system-ui,Segoe UI,Helvetica,Apple Color Emoji,Arial,sans-serif,Segoe UI Emoji,Segoe UI Symbol;
+}
+svg{
+  display: block;
+  vertical-align: middle;
+}
+
+.header1 {
+ font-size: 1.875rem;
+ font-weight: 600;
+ line-height: 2.25rem;
+}
+
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+
+.text-token-text-tertiary {
+  color: var(--gray-400);
+}
+.text-token-text-secondary {
+  color: var(--text-secondary);
+}
+
+
+.clickable{
+  cursor: pointer;
+}
+
+.shadowbox{
+  padding: .5rem 0;
+  border-radius: .375rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1);
+  border: var(--border-light) solid 1px;
+}
+
+button.chat-submit{
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--button-gray);
+  color: var(--chat-background-color);
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+/* PAGE_Main.js */
+.topmenu-container{
+  display: flex;
+  height: fit-content;
+  background-color: white;
+  padding: .5rem;
+}
+.topmenu{
+  display: flex;
+  align-items: center;
+  text-align: left;
+  background-color: transparent;
+}
+
+/* const Index_Page */
+.index-page{
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+    background-color: #ffffff; 
+    text-Align: center;
+    width: 100%; 
+    height: 100%; 
+}
+.index-input-wrapper{
+  display: flex;
+  justify-content: center;
+  height: 22%;
+  width: 100%; 
+  align-items: center;
+  text-Align: center;
+}
+.index-input-form{
+  display: flex;
+  width: 50%;
+  height: 3rem;
+  background-color: var(--chat-background-color);
+  padding: .25rem .625rem;
+  border-radius: 1.5rem;
+  align-items: center;
+  text-Align: center;
+}
+.index-input-text{
+ flex: 1;
+ padding: .25rem .625rem;
+ background: none;
+ border: none;
+ outline: none;
+ color: black;
+}
