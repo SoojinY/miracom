@@ -77,9 +77,9 @@ li.side_tab:has(*) {
 
 /* 사이드바 팝업 메뉴 (이름 바꾸기, 삭제) */
 .menuList{
-    /* padding: .5rem 0;
-    border-radius: .375rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1); */
+    position: sticky;
+    z-index: 99;
+    background-color: white;
 }
 .menu {
     display: flex;

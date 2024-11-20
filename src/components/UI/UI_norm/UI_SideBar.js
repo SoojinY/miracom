@@ -122,7 +122,10 @@ const Sidebar_menu = forwardRef((props, ref) => {
         style={{
             position: 'absolute', top: '-9999px', left: '-9999px',
             //  width: '100px', height: '100px',
-            backgroundColor: '#fff', border: '1px solid #ccc', borderRadius: '10px', zIndex: 99,
+            // backgroundColor: '#fff', 
+            // border: '1px solid #ccc', 
+            // borderRadius: '10px', 
+            // zIndex: 99,
         }}>
         {props.menus}
     </div>)
