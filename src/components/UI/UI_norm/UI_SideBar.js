@@ -6,7 +6,7 @@ import '../../STYLE/SideBar_ul.css';
 import '../../STYLE/page.css';
 import Icon_side_bar from './../../../Icon/Icon_side_bar.png';
 
-import { ICON_sideBar } from '../../Icon.js';
+import { ICON_delete, ICON_edit, ICON_sideBar } from '../../Icon.js';
 
 const Sidebar_rename = forwardRef((props, ref) => {
     const call_bak_ = props._call_bak
@@ -297,7 +297,8 @@ const Sidebar = forwardRef((props, ref) => {
     }
     return (
         <div className='sidebar-background sidebar-wrapper' ref={sidebarRef} style={{
-            width: isOpen_ ? UI_width_ + 'px' : 0 + 'px', // 사이드바 너비
+            width: isOpen_ ? UI_width_+ 60 + 'px' : 0 + 'px', // 사이드바 너비
+            // width: isOpen_ ? UI_width_ + 'px' : 0 + 'px', // 사이드바 너비
             // width:'200px',
             // backgroundColor: '#eee',
             // transition: '0.3s ease',
@@ -309,76 +310,21 @@ const Sidebar = forwardRef((props, ref) => {
             <Sidebar_menu ref={sidebarmenuRef} menus={
                 <div class="menuList shadowbox">
                     <div>
-                    <div class="menu" onClick={rename_open}>
-                        <svg class="menuItem"  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.2929 4.29291C15.0641 2.52167 17.9359 2.52167 19.7071 4.2929C21.4784 6.06414 21.4784 8.93588 19.7071 10.7071L18.7073 11.7069L11.6135 18.8007C10.8766 19.5376 9.92793 20.0258 8.89999 20.1971L4.16441 20.9864C3.84585 21.0395 3.52127 20.9355 3.29291 20.7071C3.06454 20.4788 2.96053 20.1542 3.01362 19.8356L3.80288 15.1C3.9742 14.0721 4.46243 13.1234 5.19932 12.3865L13.2929 4.29291ZM13 7.41422L6.61353 13.8007C6.1714 14.2428 5.87846 14.8121 5.77567 15.4288L5.21656 18.7835L8.57119 18.2244C9.18795 18.1216 9.75719 17.8286 10.1993 17.3865L16.5858 11L13 7.41422ZM18 9.5858L14.4142 6.00001L14.7071 5.70712C15.6973 4.71693 17.3027 4.71693 18.2929 5.70712C19.2831 6.69731 19.2831 8.30272 18.2929 9.29291L18 9.5858Z" fill="currentColor"></path></svg>
-                        <div class="menuItem" >이름 바꾸기</div>
-                    </div>
-                    <div class="menu red" onClick={MANAGE_remove_tab} >
-                        <svg class="menuItem" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5555 4C10.099 4 9.70052 4.30906 9.58693 4.75114L9.29382 5.8919H14.715L14.4219 4.75114C14.3083 4.30906 13.9098 4 13.4533 4H10.5555ZM16.7799 5.8919L16.3589 4.25342C16.0182 2.92719 14.8226 2 13.4533 2H10.5555C9.18616 2 7.99062 2.92719 7.64985 4.25342L7.22886 5.8919H4C3.44772 5.8919 3 6.33961 3 6.8919C3 7.44418 3.44772 7.8919 4 7.8919H4.10069L5.31544 19.3172C5.47763 20.8427 6.76455 22 8.29863 22H15.7014C17.2354 22 18.5224 20.8427 18.6846 19.3172L19.8993 7.8919H20C20.5523 7.8919 21 7.44418 21 6.8919C21 6.33961 20.5523 5.8919 20 5.8919H16.7799ZM17.888 7.8919H6.11196L7.30423 19.1057C7.3583 19.6142 7.78727 20 8.29863 20H15.7014C16.2127 20 16.6417 19.6142 16.6958 19.1057L17.888 7.8919ZM10 10C10.5523 10 11 10.4477 11 11V16C11 16.5523 10.5523 17 10 17C9.44772 17 9 16.5523 9 16V11C9 10.4477 9.44772 10 10 10ZM14 10C14.5523 10 15 10.4477 15 11V16C15 16.5523 14.5523 17 14 17C13.4477 17 13 16.5523 13 16V11C13 10.4477 13.4477 10 14 10Z" fill="currentColor"></path></svg>
-                        <div class="menuItem" >삭제</div>
-                    </div>
+                        <div class="menu" onClick={rename_open}>
+                            <ICON_edit _className="menuItem" _size="24"></ICON_edit>
+                            <div class="menuItem" >이름 바꾸기</div>
+                        </div>
+                        <div class="menu red" onClick={MANAGE_remove_tab} >
+                            <ICON_delete _className="menuItem" _size="24"></ICON_delete>
+                            <div class="menuItem" >삭제</div>
+                        </div>
                     </div>
                 </div>
-                // <div style={{
-                //     display: 'flex',
-                //     width:'100%',
-                //     height:'100%',
-                //     flexDirection: 'column',
-                //     alignItems: 'flex-start',
-                //     padding: '10px',
-                //     backgroundColor: '#f4f4f4',
-                //     borderRadius: '8px',
-                //     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                //     width: '60px'
-                // }}>
-                //     <button
-                //         onClick={rename_open}
-                //         style={{
-                //             color: '#000',
-                //             padding: '10px',
-                //             width:'100%',
-                //             border: 'none',
-                //             borderRadius: '5px',
-                //             cursor: 'pointer',
-                //             marginBottom: '10px',
-                //             transition: 'background-color 0.3s ease',
-                //             fontSize:'1.2vw'
-                //         }}
-                //         onMouseOver={(e) => e.target.style.backgroundColor = '#fff'}
-                //         onMouseOut={(e) => e.target.style.backgroundColor = '#eee'}
-                //     >
-                //         이름 변경
-                //     </button>
-
-                //     <button
-                //         onClick={MANAGE_remove_tab}
-                //         style={{
-                //             backgroundColor: '#eee',
-                //             color: '#000',
-                //             width:'100%',
-                //             padding: '10px',
-                //             border: 'none',
-                //             borderRadius: '5px',
-                //             cursor: 'pointer',
-                //             transition: 'background-color 0.3s ease',
-                //             fontSize:'1.2vw'
-                //         }}
-                //         onMouseOver={(e) => e.target.style.backgroundColor = '#fff'}
-                //         onMouseOut={(e) => e.target.style.backgroundColor = '#eee'}
-                //     >
-                //         삭제
-                //     </button>
-                // </div>
             }></Sidebar_menu>
             <div className='topmenu-container sidebar-background'>
                 <div className='topmenu'>
                     <div className="shade-container text-token-text-secondary" onClick={toggleSidebar} 
-                    style={{ 
-                        zIndex: 9,
-                        // position: 'fixed', top: '0px', left: '0px', 
-                        // width: '40px', height: '35px', margin: '10px', 
-                        // color: '#ffffff' 
-                    }}
+                    style={{ zIndex: 9,}}
                     >
                         <ICON_sideBar 
                             style={{filter: option.filter, 
@@ -391,20 +337,15 @@ const Sidebar = forwardRef((props, ref) => {
             
             <div style={{ height: '10%'}}></div>
             <div style={{
-                width: UI_width_ + 'px',
+                // width: UI_width_ + 'px',
+                width: '100%',
                 height: '90%',
                 overflowY: 'scroll',
                 backgroundColor: 'transparent',
                 transform: `translatex(${VAR_position_x_}px)`,
                 transition: '0.3s ease'
             }} >
-                <div className='sidetab-wrapper'
-                // style={{ 
-                //     // backgroundColor: '#eee', 
-                //     height: '90%', 
-                //     padding: '0px', margin: '0px', 
-                //     paddingRight: '10px' }}
-                >
+                <div className='sidetab-wrapper'>
                     {Object.entries(DATA_Tabs_).map(([key, value]) => (
                         <Sidebar_Tab key={key} dataset={value} _CALLBACK_onclick={CALLBACK_onclick_} _CALLBACK_onclick_menu={CALLBACK_onclick_menu}></Sidebar_Tab>
                     ))}
@@ -412,7 +353,6 @@ const Sidebar = forwardRef((props, ref) => {
             </div>
         </div >
     );
-
 
 });
 

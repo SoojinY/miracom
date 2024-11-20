@@ -1,10 +1,10 @@
 import React from 'react';
 import Board from '../UI/UI_chat/UI_Chat_Board.js';
 import './../STYLE/scroll.css'; 
-import './../STYLE/page.css'; 
 import PAGE from './PAGE.js';
 
-import {ICON_newChat, ICON_submitChat}from '../Icon.js';
+import './../STYLE/page.css'; 
+import {ICON_submitChat}from '../Icon.js';
 
 class PAGE_NewPage extends PAGE {
     constructor(props) {
@@ -32,9 +32,14 @@ class PAGE_NewPage extends PAGE {
     render() {
         return (
             <div className='index-page'>
-                <div><span className='header1'>
-                    무엇을 도와드릴까요?
-                </span></div>
+                <div className='header1 typing-wrapper'> 
+                    <div className="no-bgcolor" style={{height:"1.875rem", width:"1.875rem"}}></div>
+                    <div className="typing-text">무엇을 도와드릴까요?</div>
+                    <div className="no-bgcolor" style={{display:"grid", placeItems:'center start', height:"1.875rem", width:"1.875rem"}}>
+                        <div className="cursor" style={{height:"1.6rem", width:"1.6rem"}}></div>
+                    </div>
+                    
+                </div>
                 <div className='index-input-wrapper'>
                     <form className='index-input-form' onSubmit={this.func_handleSubmit} >
                         <input

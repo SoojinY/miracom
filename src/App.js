@@ -1,25 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Page_Main from './components/PAGE_Main';
+import { useEffect } from 'react';
+import './components/STYLE/shade_container.css';
+import './components/STYLE/fade.css';
 function App() {
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Page_Main></Page_Main>
     </div>
   );
+
+
 }
+
 
 export default App;

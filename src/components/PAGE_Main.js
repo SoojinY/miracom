@@ -22,8 +22,8 @@ import UserInfo from './UI/UI_norm/UI_UserInfo.js';
 
 import Icon_new_chat from './../Icon/Icon_new_chat.png';
 import PAGE_FileUpload from './PAGE/PAGE_FileUpload.js';
-import './STYLE/page.css';
 
+import './STYLE/page.css';
 import {ICON_newChat, ICON_sideBar}from './Icon.js';
 
 
@@ -154,9 +154,6 @@ const Page_Main = () => {
                 <Tooltip key='tm2' onClick={() => { VAR_CUR_PAGE('인덱스') }} tooltipText='새 어시스턴트'>
                     <div key='tm3' style={{ display: 'inline-block' }} className="shade-container text-token-text-secondary">
                         <ICON_newChat key='tm4' _className="icon-xl-heavy align-center" _size="24"></ICON_newChat>
-                        {/* <img key='tm4' src={Icon_new_chat} className="shade-content" 
-                        style={{ width: '40px', height: '40px' }}
-                        ></img> */}
                     </div>
                 </Tooltip>
             </div>

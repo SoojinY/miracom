@@ -2,6 +2,8 @@ import React, { useState,useRef,forwardRef,useImperativeHandle, useEffect } from
 import '../../STYLE/SideBar_ul.css'; 
 import Icons from './../UI_mapper/UI_Mapper_Icon';
 
+import './../../STYLE/page.css'; 
+import {ICON_dotMenu} from '../../Icon.js';
                   
 const Sidebar_Tab = forwardRef((props, ref) => { //({_DATA_name='X',dataset={'temp':'set'}}) => {
     let CALLBACK_onclick_= props._CALLBACK_onclick?props._CALLBACK_onclick:null;
@@ -16,8 +18,12 @@ const Sidebar_Tab = forwardRef((props, ref) => { //({_DATA_name='X',dataset={'te
             try{
                 if(value.constructor.name == 'Object' ){
                     if(isOpen_[key]){
-                        elements.push(<li key={key}  className='no-hover' onClick={()=>toggleSidebar(key)}>{key}
-                        <Sidebar_Tab key={key} dataset={value} _CALLBACK_onclick={CALLBACK_onclick_}  _CALLBACK_onclick_menu={CALLBACK_onclick_menu_}></Sidebar_Tab></li>);
+                        elements.push(
+                        <li key={key}  className='no-hover' onClick={()=>toggleSidebar(key)}>
+                            {key}
+                            <Sidebar_Tab key={key} dataset={value} _CALLBACK_onclick={CALLBACK_onclick_}  _CALLBACK_onclick_menu={CALLBACK_onclick_menu_}></Sidebar_Tab>
+                        </li>
+                        );
                     }
                     else{
                         elements.push(<li key={key}  className='side_tab' onClick={()=>toggleSidebar(key)}>{key}</li>)
@@ -27,8 +33,36 @@ const Sidebar_Tab = forwardRef((props, ref) => { //({_DATA_name='X',dataset={'te
                 }
                 else if (typeof(value)==='string'){
                     console.log(value)
-                    if(['파일업로드 인사지원','파일업로드 프로젝트 지원','파일업로드 솔루션','파일업로드 마케팅 및 영업','파일업로드 회의록'].includes(value)) elements.push(<div className='hoverfade-container' style={{display:'flex',flexDirection:'row', justifyContent: 'space-between',height:'30px',alignItems:'center'}}><li key={key} style={{width:'90%',fontSize:'0.8em',alignContent:'center'}} className='side_tab' onClick={() => handleClick(value)}>{key}</li></div>);
-                    else elements.push(<div className='hoverfade-container' style={{display:'flex',flexDirection:'row', justifyContent: 'space-between',height:'30px',alignItems:'center'}}><li key={key} style={{width:'90%',fontSize:'0.8em',alignContent:'center'}} className='side_tab' onClick={() => handleClick(value)}>{key}</li><div className='shade-container' style={{width:'10%',height:'20px'}} ><img className='shade-content' data-key={value}  src={Icons.Icon_dot_menu} onClick={ handleClickmenu } style={{height:'100%',marginRight:'10px',zIndex:99}}></img></div></div>);
+                    if(['파일업로드 인사지원','파일업로드 프로젝트 지원','파일업로드 솔루션','파일업로드 마케팅 및 영업','파일업로드 회의록'].includes(value)) elements.push(
+                    <div className='hoverfade-container' 
+                    style={{display:'flex',flexDirection:'row', justifyContent: 'space-between',height:'30px',alignItems:'center'}}>
+                        <li key={key} 
+                        style={{width:'90%',fontSize:'0.8em',alignContent:'center'}} 
+                        className='side_tab' onClick={() => handleClick(value)}>
+                            {key}
+                        </li>
+                    </div>);
+                    else elements.push(
+                    <div className='hoverfade-container' 
+                    style={{display:'flex',flexDirection:'row', justifyContent: 'space-between',height:'30px',alignItems:'center'}}>
+                        <li key={key} 
+                        style={{width:'90%',fontSize:'0.8em',alignContent:'center'}} 
+                        className='side_tab' onClick={() => handleClick(value)}>
+                            {key}
+                        </li>
+                        <div className='shade-container' 
+                        style={{width:'10%',height:'20px'}} data-key={value} onClick={ handleClickmenu } 
+                        >
+                            <ICON_dotMenu _className="shade-content icon-md" _size="24"
+                             onClick={ handleClickmenu } ></ICON_dotMenu>
+                            {/* <img className='shade-content' 
+                            data-key={value}  
+                            src={Icons.Icon_dot_menu} 
+                            onClick={ handleClickmenu } 
+                            style={{height:'100%',marginRight:'10px',zIndex:99}}></img> */}
+                        </div>
+                    </div>
+                    );
                 }
                 else{
                 }
@@ -77,7 +111,7 @@ const Sidebar_Tab = forwardRef((props, ref) => { //({_DATA_name='X',dataset={'te
             <ul className='side_tab' onClick={(e)=> e.stopPropagation()}>
                 {func_UI_make_view(DATA_setting_)}               
             </ul>
-            </div>
+        </div>
     )
 });
 
